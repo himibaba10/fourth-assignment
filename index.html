@@ -40,7 +40,7 @@
         </div>
 
 
-        <div class="booking-form">
+        <div class="booking-form" id="shown">
             <h3>Book Ocean Time</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -111,12 +111,16 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p id="total">$550</p>
+                        <p id="total">$0</p>
                     </div>
                 </div>
             </div>
-            <p id="confirmation"></p>
             <button onclick="getConfirmation()" class="btn-style">Book Now</button>
+        </div>
+        <div class="booking-form" id="hidden">
+            <h1 class="text-center">Thank you very much for buying Tickets!</h1>
+            <div id="first-purchase" class="bg-success text-white fs-2 p-5 rounded"></div>
+            <div id="economy-purchase" class="bg-primary text-white fs-2 p-5 mt-3 rounded"></div>
         </div>
     </main>
 
@@ -160,19 +164,20 @@
             document.getElementById("total").innerText = "$" + (subTotal + vat);
         }
 
-        //To show how much ticket were booked
+        //To show how much tickets were booked
         function getConfirmation(){
             const firstClassNumber = makeInteger("first-class");
             const economyNumber = makeInteger("economy");
-            document.getElementById("confirmation").innerHTML = "<b>You have purchased "
+            document.getElementById("shown").style.display = "none";
+            document.getElementById("hidden").style.display="block";
+
+            document.getElementById("first-purchase").innerHTML = "You have purchased "
             + firstClassNumber
-            + " first-class tickets <br> and "
+            + " first-class tickets";
+
+            document.getElementById("economy-purchase").innerHTML = "You have purchased "
             + economyNumber
-            + " economy tickets</b>";
-            document.getElementById("confirmation").style.color = "#0d6efd";
-            document.getElementById("confirmation").style.backgroundColor = "rgb(147 243 237)";
-            document.getElementById("confirmation").style.borderRadius = "10px";
-            document.getElementById("confirmation").style.paddingLeft = "10px";
+            + " economy tickets";
         }
     </script>
 </body>
